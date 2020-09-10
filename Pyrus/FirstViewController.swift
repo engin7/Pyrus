@@ -9,12 +9,18 @@
 import UIKit
 
 class FirstViewController: UIViewController {
-
+    
+    private let network = NetworkManager.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        network.getServices(get: .trending, service: nil, completion: {success in
+            if success {
+                print(self.network.trendingServices)
+            }
+        })
     }
-
-
+   
 }
 
