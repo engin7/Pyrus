@@ -66,12 +66,12 @@ enum GetType {
         completionHandler: { [weak imageView] url, response, error in
           if error == nil, let url = url,
           let data = try? Data(contentsOf: url),
-          let image = UIImage(data: data) {
+            let image = UIImage(data: data) {
             DispatchQueue.main.async {
                 if let weakSelf = imageView as UIImageView? {
-                weakSelf.image = image
-              }
-          } }
+                    weakSelf.image = image
+                }
+            } }
         })
         downloadTask.resume()
         return downloadTask

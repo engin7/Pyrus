@@ -36,12 +36,27 @@ func collectionView(_ collectionView: UICollectionView, layout collectionViewLay
     case 0:
         return CGSize(width: 260, height: 200)
     case 1:
-        return CGSize(width: 150, height: 150)
+        return CGSize(width: 130, height: 150)
     case 2:
-        return CGSize(width: 150, height: 150)
+        return CGSize(width: 135, height: 250)
     default:
         return CGSize(width: 0, height: 0)
     }
+    }
+}
+
+extension MainViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let datasourceIndex = collectionView.tag
+        switch datasourceIndex {
+        case 2:
+        let post = network.posts[indexPath.row]
+        UIApplication.shared.open(NSURL(string:post.link)! as URL)
+        default:
+        print("detail VC")
+        }
     }
 }
 
