@@ -36,8 +36,8 @@ struct Service: Codable {
 
 struct Post: Codable {
     
-    var title     = ""
     var category  = ""
+    var title     = ""
     var link      = ""
     var image     = ""
     

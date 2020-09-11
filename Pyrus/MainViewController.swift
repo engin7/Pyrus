@@ -34,9 +34,9 @@ func collectionView(_ collectionView: UICollectionView, layout collectionViewLay
     let tagIndex = collectionView.tag
     switch tagIndex {
     case 0:
-        return CGSize(width: 260, height: 175)
+        return CGSize(width: 260, height: 200)
     case 1:
-        return CGSize(width: 150, height: 125)
+        return CGSize(width: 150, height: 150)
     case 2:
         return CGSize(width: 150, height: 150)
     default:
