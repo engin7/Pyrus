@@ -19,7 +19,7 @@ private var dataTask: URLSessionDataTask? = nil
 
 var trendingServices:[Service] = []
 var otherServices:[Service] = []
-var posts:[Service] = []
+var posts:[Post] = []
 var serviceById:Service?
     
 enum GetType {
@@ -30,7 +30,6 @@ enum GetType {
 }
     
     typealias SearchComplete = (Bool) -> Void
-
     
     func getServices(get: GetType, service: Service?, completion: @escaping SearchComplete) {
         
@@ -51,7 +50,8 @@ enum GetType {
             }
             if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200, let data = data {
                 self.trendingServices = self.parse(data: data).trending
-                
+                self.otherServices = self.parse(data: data).other
+                self.posts = self.parse(data: data).posts
             }
             DispatchQueue.main.async {
                 completion(true)
