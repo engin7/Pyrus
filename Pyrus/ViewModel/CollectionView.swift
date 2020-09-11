@@ -29,19 +29,29 @@ class CollectionViewDataSource: NSObject, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
-        cell.title.adjustsFontSizeToFitWidth = true
-        
+ 
         let datasourceIndex = collectionView.tag
         switch datasourceIndex {
         case 0:
             cell.title.text = network.trendingServices[indexPath.row].name
+            cell.title.font = .boldSystemFont(ofSize: 18)
+            cell.totalService.text = String(network.trendingServices[indexPath.row].totalService) + " Pros near you"
+            cell.totalService.alpha = 0.5
+
             return cell
         case 1:
             cell.title.text = network.otherServices[indexPath.row].name
+            cell.title.font = .boldSystemFont(ofSize: 12)
+            cell.totalService.text = String(network.otherServices[indexPath.row].totalService) + " Pros near you"
+            cell.totalService.alpha = 0.5
+
             return cell
         case 2:
-            cell.title.text = network.posts[indexPath.row].title
-            return cell
+            cell.title.text = network.posts[indexPath.row].category
+            cell.title.textColor = UIColor(red: 0.28, green: 0.29, blue: 0.30, alpha: 1.00)
+            cell.title.font = .boldSystemFont(ofSize: 16)
+            
+             return cell
         default:
             return cell
         }

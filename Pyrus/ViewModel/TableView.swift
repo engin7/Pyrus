@@ -18,9 +18,10 @@ class TableViewDataSource: NSObject, UITableViewDataSource {
          
         let cell = tableView.dequeueReusableCell(withIdentifier:"Cell", for:indexPath) as! TableViewCell
         cell.collectionView.tag = indexPath.row
+        cell.header.font = .boldSystemFont(ofSize: 20.0)
         
         let index = indexPath.row
-    
+        
         switch index {
         case 0:
             cell.header.text = "Trending Services"

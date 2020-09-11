@@ -20,7 +20,7 @@ struct Service: Codable {
     var name           = ""
     var longName       = ""
     var image          = ""
-    var totalService   = 0.0
+    var totalService   = 0
     var id             = 0.0
     var serviceId      = 0.0
     

@@ -36,7 +36,7 @@ func collectionView(_ collectionView: UICollectionView, layout collectionViewLay
     case 0:
         return CGSize(width: 260, height: 175)
     case 1:
-        return CGSize(width: 125, height: 125)
+        return CGSize(width: 150, height: 125)
     case 2:
         return CGSize(width: 150, height: 150)
     default:

@@ -16,7 +16,6 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var totalService: UILabel!
     @IBOutlet weak var image: UIImageView!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.contentView.isUserInteractionEnabled = true
