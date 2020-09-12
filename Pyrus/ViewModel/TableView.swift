@@ -11,7 +11,7 @@ import UIKit
 class TableViewDataSource: NSObject, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3 //Root
+        3 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -19,7 +19,8 @@ class TableViewDataSource: NSObject, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier:"Cell", for:indexPath) as! TableViewCell
         cell.collectionView.tag = indexPath.row
         cell.header.font = .boldSystemFont(ofSize: 20.0)
-        
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
+
         let index = indexPath.row
         
         switch index {

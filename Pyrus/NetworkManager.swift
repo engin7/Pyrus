@@ -53,7 +53,8 @@ enum GetType {
                 default:
                     self.trendingServices = self.parse(data: data).trending
                     self.otherServices = self.parse(data: data).other
-                    self.posts = self.parse(data: data).posts                }
+                    self.posts = self.parse(data: data).posts
+                }
             }
             DispatchQueue.main.async {
                 completion(true)
