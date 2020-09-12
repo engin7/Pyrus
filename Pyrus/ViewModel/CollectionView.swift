@@ -66,15 +66,18 @@ class CollectionViewDataSource: NSObject, UICollectionViewDataSource {
             cell.totalService.text = network.posts[indexPath.row].title
             cell.totalService.textColor = .white
             
+//            cell.totalService.translatesAutoresizingMaskIntoConstraints = false
+//            cell.totalService.addConstraint(NSLayoutConstraint(item: cell.totalService!, attribute: .top, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: -21))
+//
             if let imageURL = URL(string: network.posts[indexPath.row].image) {
                           downloadTask = network.loadImage(imageView: cell.image, url: imageURL)
                       }
-            
+                    
              return cell
         default:
             return cell
         }
   
      }
-    
+     
 }

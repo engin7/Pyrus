@@ -18,7 +18,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = tableViewDataSource
-        network.getServices(get: .trending, service: nil, completion: {success in
+        network.getServices(get: .main, service: nil, completion: {success in
                   if success {
                     self.tableView.reloadData()
                    }
@@ -43,6 +43,7 @@ func collectionView(_ collectionView: UICollectionView, layout collectionViewLay
         return CGSize(width: 0, height: 0)
     }
     }
+     
 }
 
 extension MainViewController: UICollectionViewDelegate {
@@ -50,12 +51,31 @@ extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let datasourceIndex = collectionView.tag
+        let vc = storyboard?.instantiateViewController(withIdentifier: "detailVC") as! DetailViewController
+        let myCell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell
+        vc.receivedImage = myCell?.image.image
         switch datasourceIndex {
         case 2:
-        let post = network.posts[indexPath.row]
-        UIApplication.shared.open(NSURL(string:post.link)! as URL)
-        default:
-        print("detail VC")
+            let post = network.posts[indexPath.row]
+            UIApplication.shared.open(NSURL(string:post.link)! as URL)
+        case 1:
+            let clickedService = network.otherServices[indexPath.row]
+            network.getServices(get: .byId, service: clickedService, completion: {success in
+                if success {
+                    vc.service = self.network.serviceById
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            })
+        case 0:
+            let clickedService = network.trendingServices[indexPath.row]
+            //            vc.imageView =  access cell image
+            network.getServices(get: .byId, service: clickedService, completion: {success in
+                if success {
+                    vc.service = self.network.serviceById
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            })
+        default: return
         }
     }
 }

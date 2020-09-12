@@ -23,9 +23,7 @@ var posts:[Post] = []
 var serviceById:Service?
     
 enum GetType {
-  case trending
-  case other
-  case posts
+  case main
   case byId
 }
     
@@ -49,9 +47,13 @@ enum GetType {
                 return
             }
             if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200, let data = data {
-                self.trendingServices = self.parse(data: data).trending
-                self.otherServices = self.parse(data: data).other
-                self.posts = self.parse(data: data).posts
+                switch get {
+                case .byId:
+                    self.serviceById = self.parseId(data: data)
+                default:
+                    self.trendingServices = self.parse(data: data).trending
+                    self.otherServices = self.parse(data: data).other
+                    self.posts = self.parse(data: data).posts                }
             }
             DispatchQueue.main.async {
                 completion(true)
@@ -90,5 +92,16 @@ enum GetType {
             let empty = Root(trending: [], other: [], posts: [])
             return  empty  }
     }
+    
+    private func parseId(data: Data) -> Service {
+           do {
+               let decoder = JSONDecoder()
+               let result = try decoder.decode(Service.self, from:data)
+               return result
+           } catch {
+               print("JSON Error: \(error)")
+               let empty = Service()
+               return  empty  }
+       }
     
 }
