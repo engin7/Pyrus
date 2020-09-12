@@ -19,6 +19,7 @@ class CollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.contentView.isUserInteractionEnabled = true
+
     }
     
     override func prepareForReuse() {
