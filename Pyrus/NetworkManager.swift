@@ -55,14 +55,17 @@ enum GetType {
                     self.otherServices = self.parse(data: data).other
                     self.posts = self.parse(data: data).posts
                 }
-            }
-            DispatchQueue.main.async {
-                completion(true)
+                DispatchQueue.main.async {
+                    completion(true)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    completion(false)
+                }
             }
         })
            dataTask?.resume()
     }
-   
     
     // MARK:- Private Methods
    

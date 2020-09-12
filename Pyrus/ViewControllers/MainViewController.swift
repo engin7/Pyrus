@@ -10,22 +10,40 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     private let network = NetworkManager.shared
     private let tableViewDataSource = TableViewDataSource()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = tableViewDataSource
-        network.getServices(get: .main, service: nil, completion: {success in
-                  if success {
-                    self.tableView.reloadData()
-                   }
-              })
+        getServices()
     }
-
+    
+    func getServices() {
+        network.getServices(get: .main, service: nil, completion: {success in
+            if !success {
+                self.showNetworkError()
+            } else {
+                self.tableView.reloadData()
+            }
+        })
+    }
+    
+    // MARK:- Helper Methods
+    
+    func showNetworkError() {
+        let alert = UIAlertController(title: "Sorry...", message: "Error occured connecting the Server. Please check your connection and try again.", preferredStyle: .alert)
         
+        let action = UIAlertAction(title: "Retry", style: .default, handler: {
+        (UIAlertAction) in
+        self.getServices()
+        })
+        
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
+ 
 }
 
 extension MainViewController: UICollectionViewDelegateFlowLayout {
@@ -43,7 +61,7 @@ func collectionView(_ collectionView: UICollectionView, layout collectionViewLay
         return CGSize(width: 0, height: 0)
     }
     }
-     
+
 }
 
 extension MainViewController: UICollectionViewDelegate {
