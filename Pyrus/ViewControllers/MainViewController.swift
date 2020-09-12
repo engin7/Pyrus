@@ -53,7 +53,7 @@ extension MainViewController: UICollectionViewDelegate {
         let datasourceIndex = collectionView.tag
         let vc = storyboard?.instantiateViewController(withIdentifier: "detailVC") as! DetailViewController
         let myCell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell
-        vc.receivedImage = myCell?.image.image
+        vc.receivedImage = myCell?.imageView.image
         switch datasourceIndex {
         case 2:
             let post = network.posts[indexPath.row]
@@ -68,7 +68,6 @@ extension MainViewController: UICollectionViewDelegate {
             })
         case 0:
             let clickedService = network.trendingServices[indexPath.row]
-            //            vc.imageView =  access cell image
             network.getServices(get: .byId, service: clickedService, completion: {success in
                 if success {
                     vc.service = self.network.serviceById

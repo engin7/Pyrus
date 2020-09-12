@@ -42,22 +42,14 @@ class CollectionViewDataSource: NSObject, UICollectionViewDataSource {
             cell.title.font = .boldSystemFont(ofSize: 16)
             cell.totalService.text = String(network.trendingServices[indexPath.row].totalService) + " Pros near you"
             cell.totalService.alpha = 0.5
-            
-            if let imageURL = URL(string: network.trendingServices[indexPath.row].image) {
-                downloadTask = network.loadImage(imageView: cell.image, url: imageURL)
-            }
-            
+            cell.imageView.loadImageUsingCache(withUrl: network.trendingServices[indexPath.row].image)
             return cell
         case 1:
             cell.title.text = network.otherServices[indexPath.row].name
             cell.title.font = .boldSystemFont(ofSize: 12)
             cell.totalService.text = String(network.otherServices[indexPath.row].totalService) + " Pros near you"
             cell.totalService.alpha = 0.5
-            
-            if let imageURL = URL(string: network.otherServices[indexPath.row].image) {
-                downloadTask = network.loadImage(imageView: cell.image, url: imageURL)
-            }
-            
+            cell.imageView.loadImageUsingCache(withUrl: network.otherServices[indexPath.row].image)
             return cell
         case 2:
             cell.title.text = network.posts[indexPath.row].category
@@ -69,11 +61,8 @@ class CollectionViewDataSource: NSObject, UICollectionViewDataSource {
 //            cell.totalService.translatesAutoresizingMaskIntoConstraints = false
 //            cell.totalService.addConstraint(NSLayoutConstraint(item: cell.totalService!, attribute: .top, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: -21))
 //
-            if let imageURL = URL(string: network.posts[indexPath.row].image) {
-                          downloadTask = network.loadImage(imageView: cell.image, url: imageURL)
-                      }
-                    
-             return cell
+            cell.imageView.loadImageUsingCache(withUrl: network.posts[indexPath.row].image)
+            return cell
         default:
             return cell
         }

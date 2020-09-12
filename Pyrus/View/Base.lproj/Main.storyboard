@@ -86,7 +86,7 @@
                                                             </collectionViewCellContentView>
                                                             <size key="customSize" width="260" height="175"/>
                                                             <connections>
-                                                                <outlet property="image" destination="H3I-IC-6tO" id="Vor-Jt-6Lk"/>
+                                                                <outlet property="imageView" destination="H3I-IC-6tO" id="Vor-Jt-6Lk"/>
                                                                 <outlet property="title" destination="N5M-65-fcJ" id="SMQ-7U-xgS"/>
                                                                 <outlet property="totalService" destination="cvz-1z-kdX" id="z6f-3H-Opr"/>
                                                             </connections>

@@ -14,7 +14,7 @@ class CollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var totalService: UILabel!
-    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var imageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
