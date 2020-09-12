@@ -22,9 +22,9 @@ struct Service: Codable {
     var image          = ""
     var totalService   = 0
     var id             = 0
-    var serviceId      = 0.0
+    var serviceId      = 0
     var rating: Float?
-    var jobsDone: Float?
+    var jobsDone: Int?
     
     enum CodingKeys: String, CodingKey {
         case totalService = "pro_count"
