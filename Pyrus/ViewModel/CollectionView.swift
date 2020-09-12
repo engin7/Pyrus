@@ -11,12 +11,7 @@ import UIKit
 class CollectionViewDataSource: NSObject, UICollectionViewDataSource {
 
     private let network = NetworkManager.shared
-    private var downloadTask: URLSessionDownloadTask?
-    
-    deinit {
-        downloadTask?.cancel() }
-    // when object instance is deallocated cancel download in progress
-    
+ 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let datasourceIndex = collectionView.tag
         switch datasourceIndex {
@@ -57,11 +52,15 @@ class CollectionViewDataSource: NSObject, UICollectionViewDataSource {
             cell.title.font = .boldSystemFont(ofSize: 14)
             cell.totalService.text = network.posts[indexPath.row].title
             cell.totalService.textColor = .white
-            
-//            cell.totalService.translatesAutoresizingMaskIntoConstraints = false
-//            cell.totalService.addConstraint(NSLayoutConstraint(item: cell.totalService!, attribute: .top, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: -21))
-//
+            cell.totalService.font = .boldSystemFont(ofSize: 13)
+            cell.totalService.translatesAutoresizingMaskIntoConstraints = false
+            cell.imageView.translatesAutoresizingMaskIntoConstraints = false
+            cell.title.translatesAutoresizingMaskIntoConstraints = false
             cell.imageView.loadImageUsingCache(withUrl: network.posts[indexPath.row].image)
+            cell.title.centerYAnchor.constraint(equalTo: cell.centerYAnchor, constant: 20).isActive = true
+            cell.imageView.bottomAnchor.constraint(equalTo: cell.bottomAnchor, constant: -40).isActive = true
+            cell.totalService.topAnchor.constraint(equalTo: cell.title.bottomAnchor, constant: -30).isActive = true
+            cell.totalService.numberOfLines = 3
             return cell
         default:
             return cell

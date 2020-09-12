@@ -27,7 +27,7 @@ class TableViewDataSource: NSObject, UITableViewDataSource {
         case 0:
             cell.header.text = "Trending Services"
         case 1:
-            cell.header.text = "Temizlik"
+            cell.header.text = "Other Services"
          case 2:
             cell.header.text = "Latest from the blog"
         default:

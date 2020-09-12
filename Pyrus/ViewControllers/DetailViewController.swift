@@ -29,9 +29,13 @@ class DetailViewController: UIViewController {
         imageView.image = receivedImage
         detailTitle.text = service?.name
         if service?.jobsDone != nil {
+            if (service?.jobsDone)! > 0 {
             jobsDone.text = "Geçen ay " + fmt.string(from: NSNumber(value: (service?.jobsDone)!))! + " " + (service?.longName)! +  " işi yapıldı"
-      
+            } else {
+            jobsDone.text = "Geçen ay " + (service?.longName)! +  " işi yapılmadı"
+            }
         }
+        
         if service?.totalService != nil {
             let pros = fmt.string(from: NSNumber(value: (service?.totalService)!))
             let text = pros! + " pros near you"
