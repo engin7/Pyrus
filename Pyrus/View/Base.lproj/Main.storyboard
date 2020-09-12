@@ -139,6 +139,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="🍐armut" id="2tf-wu-zme"/>
                     <connections>
+                        <outlet property="searchBar" destination="NxH-Rp-M8e" id="Gl0-p0-k1Z"/>
                         <outlet property="tableView" destination="CaI-WF-mjO" id="812-8F-6ks"/>
                     </connections>
                 </viewController>

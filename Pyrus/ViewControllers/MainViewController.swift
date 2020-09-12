@@ -8,14 +8,17 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
-    
+class MainViewController: UIViewController, UISearchBarDelegate {
+     
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet private weak var tableView: UITableView!
     private let network = NetworkManager.shared
     private let tableViewDataSource = TableViewDataSource()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.keyboardDismissMode = .onDrag
+        searchBar.setImage(UIImage(systemName: "mic.fill"), for: .search, state: .normal)
         tableView.dataSource = tableViewDataSource
         getServices()
     }
@@ -28,6 +31,10 @@ class MainViewController: UIViewController {
                 self.tableView.reloadData()
             }
         })
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
     
     // MARK:- Helper Methods
